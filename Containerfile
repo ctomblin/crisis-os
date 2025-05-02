@@ -3,7 +3,7 @@ FROM scratch AS ctx
 COPY build_files /
 
 # Base Image
-FROM quay.io/fedora/fedora-silverblue:43
+FROM quay.io/fedora/fedora-silverblue:latest
 
 ## Other possible base images include:
 # FROM ghcr.io/ublue-os/bazzite:latest
