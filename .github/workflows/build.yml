@@ -5,7 +5,7 @@ on:
     branches:
       - main
   schedule:
-    - cron: '0 0 11 ? * MON *'  # 10:05am UTC everyday
+    - cron: '0 11 * * MON'  # 11am only on Monday
   push:
     branches:
       - main
