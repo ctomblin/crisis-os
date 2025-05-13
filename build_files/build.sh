@@ -6,8 +6,19 @@ set -ouex pipefail
 
 # Packages can be installed from any enabled yum repo on the image.
 # RPMfusion repos are available by default in ublue main images
-# List of rpmfusion packages can be found here:
-# https://mirrors.rpmfusion.org/mirrorlist?path=free/fedora/updates/39/x86_64/repoview/index.html&protocol=https&redirect=1
+
+#swap to cachyos kernel
+wget -P /etc/yum.repos.d/ \
+    "https://copr.fedorainfracloud.org/coprs/bieszczaders/kernel-cachyos/repo/fedora-$(rpm -E %fedora)/bieszczaders-kernel-cachyos-fedora-$(rpm -E %fedora).repo"
+
+rpm-ostree cliwrap install-to-root / && \
+rpm-ostree override remove kernel kernel-core kernel-modules kernel-modules-core kernel-modules-extra --install kernel-cachyos
+
+#Install cachy addons
+dnf5 -y copr enable bieszczaders/kernel-cachyos-addons
+dnf5 -y install \
+    scx-scheds
+dnf5 -y copr disable bieszczaders/kernel-cachyos-addons
 
 # this installs a package from fedora repos
 dnf5 install -y steam-devices corectrl
