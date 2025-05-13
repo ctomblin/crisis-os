@@ -24,6 +24,7 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=tmpfs,dst=/tmp \
     dnf5 -y install dnf5-plugins && \
     dnf5 -y copr enable bieszczaders/kernel-cachyos && \
+    rpm-ostree cliwrap install-to-root / && \
     rpm-ostree override remove kernel kernel-core kernel-modules kernel-modules-core kernel-modules-extra --install kernel-cachyos && \
     dnf5 -y copr enable bieszczaders/kernel-cachyos-addons && \
     dnf5 -y install \
