@@ -18,16 +18,6 @@ FROM quay.io/fedora/fedora-silverblue:latest
 ## make modifications desired in your image and install packages by modifying the build.sh script
 ## the following RUN directive does all the things required to run "build.sh" as recommended.
 
-RUN rpm-ostree cliwrap install-to-root / && \
-    rpm-ostree override replace \
-    --experimental \
-    --from repo=copr:copr.fedorainfracloud.org:bieszczaders:kernel-cachyos \
-        kernel \
-        kernel-core \
-        kernel-modules \
-        kernel-modules-core \
-        kernel-modules-extra
-
 RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=cache,dst=/var/cache \
     --mount=type=cache,dst=/var/log \
