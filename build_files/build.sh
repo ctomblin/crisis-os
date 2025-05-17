@@ -14,7 +14,7 @@ dnf5 -y install \
 dnf5 -y copr disable bieszczaders/kernel-cachyos-addons
 
 # this installs a package from fedora repos
-dnf5 install -y steam-devices corectrl
+dnf5 install -y steam-devices corectrl goverlay
 
 # Use a COPR Example:
 #
