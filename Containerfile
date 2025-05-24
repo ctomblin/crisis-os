@@ -5,24 +5,20 @@ COPY build_files /
 # Base Image
 FROM quay.io/fedora/fedora-silverblue:latest
 
-## Other possible base images include:
-# FROM ghcr.io/ublue-os/bazzite:latest
-# FROM ghcr.io/ublue-os/bluefin-nvidia:stable
-# 
-# ... and so on, here are more base images
-# Universal Blue Images: https://github.com/orgs/ublue-os/packages
-# Fedora base image: quay.io/fedora/fedora-bootc:41
-# CentOS base images: quay.io/centos-bootc/centos-bootc:stream10
+RUN dnf5 -y copr enable bieszczaders/kernel-cachyos && \
+	rpm-ostree override remove kernel  kernel-core kernel-modules kernel-modules-core kernel-modules-extra  --install kernel-cachyos && \
+	dnf5 -y copr disable bieszczaders/kernel-cachyos
+
 
 ### MODIFICATIONS
-## make modifications desired in your image and install packages by modifying the build.sh script
-## the following RUN directive does all the things required to run "build.sh" as recommended.
-
+## the following RUN directive does all the things required to run "build.sh"
 RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=cache,dst=/var/cache \
     --mount=type=cache,dst=/var/log \
     --mount=type=tmpfs,dst=/tmp \
     /ctx/build.sh && \
+    dnf5 -y autoremove && \
+    dnf5 clean all && \
     ostree container commit
     
 ### LINTING
