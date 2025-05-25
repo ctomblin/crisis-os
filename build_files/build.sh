@@ -9,6 +9,24 @@ dnf5 -y install \
 dnf5 -y copr disable bieszczaders/kernel-cachyos-addons && \
 dnf5 clean all
 
+#Install latest mesa drivers from xxmitsu:mesa-git
+dnf5 -y copr enable xxmitsu/mesa-git
+dnf5 -y config-manager setopt copr:copr.fedorainfracloud.org:xxmitsu:mesa-git.priority=98
+
+OVERRIDES=(
+    "mesa-dri-drivers"
+    "mesa-filesystem"
+    "mesa-libEGL"
+    "mesa-libGL"
+    "mesa-libgbm"
+    "mesa-va-drivers"
+    "mesa-vulkan-drivers"
+)
+
+dnf5 distro-sync -y --repo='copr:copr.fedorainfracloud.org:xxmitsu:mesa-git' "${OVERRIDES[@]}"
+dnf5 versionlock add "${OVERRIDES[@]}"
+dnf5 -y copr disable xxmitsu/mesa-git
+
 # Install packages
 dnf5 -y install \
 	steam-devices \

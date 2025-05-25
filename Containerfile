@@ -3,12 +3,12 @@ FROM scratch AS ctx
 COPY build_files /
 
 # Base Image
-FROM quay.io/fedora/fedora-silverblue:43
+FROM quay.io/fedora/fedora-silverblue:latest
 
+#Swap out kernel
 RUN dnf5 -y copr enable bieszczaders/kernel-cachyos && \
 	rpm-ostree override remove kernel  kernel-core kernel-modules kernel-modules-core kernel-modules-extra  --install kernel-cachyos && \
 	dnf5 -y copr disable bieszczaders/kernel-cachyos
-
 
 ### MODIFICATIONS
 ## the following RUN directive does all the things required to run "build.sh"
