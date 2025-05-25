@@ -3,13 +3,6 @@
 # Purpose
 
 This repository is meant to be a template for building your own custom [bootc](https://github.com/bootc-dev/bootc) image. This template is the recommended way to make customizations to any image published by the Universal Blue Project:
-- Products: [Aurora](https://getaurora.dev/), [Bazzite](https://bazzite.gg/), [Bluefin](https://projectbluefin.io/), [uCore](https://projectucore.io/)
-- Base images: [main](https://github.com/ublue-os/main/) - the product images build on these and may be a better starting point depending on what you want. 
-
-or any other base image if you want to start from scratch:
-
-- Fedora: `quay.io/fedora/fedora-bootc:41`
-- CentOS Stream 10: `quay.io/centos-bootc/centos-bootc:stream10`
 
 This template includes a Containerfile and a Github workflow for building the container image, signing, and proper metadata to be listed on [artifacthub](https://artifacthub.io/). As soon as the workflow is enabled in your repository, it will build the container image and push it to the Github Container Registry.
 
@@ -26,12 +19,6 @@ Working knowledge in the following topics:
   - https://docs.fedoraproject.org/en-US/fedora-silverblue/
 - Github Workflows
   - https://docs.github.com/en/actions/using-workflows
-
-# Video Tutorial
-
-TesterTech has made a tutorial video, check it out: 
-
-[![Video Tutorial](https://img.youtube.com/vi/IxBl11Zmq5w/0.jpg)](https://www.youtube.com/watch?v=IxBl11Zmq5wE)
 
 # How to Use
 
@@ -268,9 +255,3 @@ Runs shell check on all Bash scripts.
 ###### `format`
 
 Runs shfmt on all Bash scripts.
-
-## Community Examples
-
-- [m2os](https://github.com/m2giles/m2os)
-- [bos](https://github.com/bsherman/bos)
-- [homer](https://github.com/bketelsen/homer/)
