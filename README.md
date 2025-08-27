@@ -20,7 +20,7 @@ Built weekly, the latest Fedora base image is modified in the following ways:
 # How to Use
 
 The easiest way to get going is to rebase from an installed bootc image. If you are starting from a clean install, I recommend installing latest Fedora Silveblue, pinning that image ```sudo ostree admin pin 0``` (for the latest image), then rebasing by running: 
-```sudo rpm-ostree rebase ostree-unverified-registry:ghcr.io/ctomblin/crisis-os```
+```sudo bootc switch ghcr.io/ctomblin/crisis-os:latest```
 
 To upgrade after weekly builds:
 ```sudo rpm-ostree upgrade```
