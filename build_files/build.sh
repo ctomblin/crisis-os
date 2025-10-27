@@ -30,7 +30,6 @@ dnf5 -y copr disable xxmitsu/mesa-git
 # Install packages
 dnf5 -y install \
 	steam-devices \
-	goverlay \
 
 #Remove unwated packages
 dnf5 remove -y firefox
