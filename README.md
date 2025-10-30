@@ -13,7 +13,6 @@ Built weekly, the latest Fedora base image is modified in the following ways:
 - Adds scx-scheds added from [CachyOS kernel addons](https://copr.fedorainfracloud.org/coprs/bieszczaders/kernel-cachyos-addons/)
 - Swaps in latest Mesa drivers at build time from [mesa-git](https://copr.fedorainfracloud.org/coprs/xxmitsu/mesa-git/)
 - Adds [Steam-devices](https://packages.fedoraproject.org/pkgs/steam-devices/steam-devices/) at build time
-- Adds [Goverlay](https://packages.fedoraproject.org/pkgs/goverlay/) at build time
 - Adds [Flathub](https://flathub.org/) to remote flatpak repository
 - Removes Firefox from image (flatpak version can be installed)
 
@@ -29,4 +28,3 @@ To upgrade after weekly builds:
 
 Since the first build I've had zero stability issues. However, that's not always going to be true. This is especally true with latest mesa drivers at build time. The beauty of bootc (atomic images) is the rollback feature to a previous image using ```sudo rpm-ostree rollback``` if any issues are encountered after an upgrade.
 I recommed pinning a stable bootc image with ```ostree admin pin``` or easily seen and managed through [Cockpit Client](https://flathub.org/apps/org.cockpit_project.CockpitClient) GUI (installed as a flatpak) under "Software Update".
-
