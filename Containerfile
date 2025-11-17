@@ -3,7 +3,7 @@ FROM scratch AS ctx
 COPY build_files /
 
 # Base Image
-FROM quay.io/fedora/fedora-silverblue:latest
+FROM quay.io/fedora/fedora-silverblue:43
 
 #Swap out kernel
 RUN dnf5 -y copr enable bieszczaders/kernel-cachyos && \
