@@ -32,6 +32,8 @@ dnf5 -y install \
 	steam-devices \
 
 #Remove unwated packages
-dnf5 remove -y firefox
+dnf5 -y remove \
+    firefox \
+    firefox-langpacks
 
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo

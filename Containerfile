@@ -6,20 +6,19 @@ COPY build_files /
 FROM quay.io/fedora/fedora-silverblue:latest
 
 #Swap out kernel
-#RUN dnf5 -y copr enable bieszczaders/kernel-cachyos && \
-#	rpm-ostree override remove kernel kernel-devel-matched kernel-devel kernel-core kernel-modules kernel-modules-core kernel-modules-extra  --install kernel-cachyos && \
-#	dnf5 -y copr disable bieszczaders/kernel-cachyos
+RUN --mount=type=cache,dst=/var/cache \
+    --mount=type=cache,dst=/var/log \
+    --mount=type=bind,from=ctx,source=/,target=/ctx \
+    /ctx/install-kernel && \
+    /ctx/cleanup
 
 ### MODIFICATIONS
-## the following RUN directive does all the things required to run "build.sh"
 RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=cache,dst=/var/cache \
     --mount=type=cache,dst=/var/log \
     --mount=type=tmpfs,dst=/tmp \
     /ctx/build.sh && \
-    dnf5 -y autoremove && \
-    dnf5 clean all && \
-    ostree container commit
+    /ctx/cleanup
     
 ### LINTING
 ## Verify final image and contents are correct.
