@@ -37,3 +37,11 @@ dnf5 -y remove \
     firefox-langpacks
 
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
+dnf5 clean all
+rm -rf /tmp/* || true
+rm -rf /var/log/dnf5.log || true
+rm -rf /boot/* || true
+rm -rf /boot/.* || true
+
+ostree container commit
