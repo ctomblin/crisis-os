@@ -5,6 +5,7 @@ COPY build_files /
 # Base Image
 FROM quay.io/fedora/fedora-silverblue:latest
 
+#Currently there is an issue with dracut/rpm-ostree during kernel install
 #Swap out kernel
 #RUN dnf5 -y copr enable bieszczaders/kernel-cachyos && \
 #	rpm-ostree override remove kernel  kernel-core kernel-modules kernel-modules-core kernel-modules-extra  --install kernel-cachyos && \
@@ -16,7 +17,10 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=cache,dst=/var/cache \
     --mount=type=cache,dst=/var/log \
     --mount=type=tmpfs,dst=/tmp \
-    /ctx/build.sh
+    /ctx/build.sh && \
+    dnf5 -y autoremove && \
+    dnf5 clean all && \
+    ostree container commit
     
 ### LINTING
 ## Verify final image and contents are correct.
