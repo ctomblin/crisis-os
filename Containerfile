@@ -8,7 +8,7 @@ FROM quay.io/fedora/fedora-silverblue:42
 #Currently there is an issue with dracut/rpm-ostree during kernel install
 #Swap out kernel
 RUN dnf5 -y copr enable bieszczaders/kernel-cachyos && \
-	rpm-ostree override remove kernel kernel-devel-matched kernel-devel kernel-core kernel-modules kernel-modules-core kernel-modules-extra  --install kernel-cachyos && \
+	rpm-ostree override remove kernel kernel-core kernel-modules kernel-modules-core kernel-modules-extra --install kernel-cachyos && \
 	dnf5 -y copr disable bieszczaders/kernel-cachyos
 
 ### MODIFICATIONS
