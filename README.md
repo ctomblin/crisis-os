@@ -8,7 +8,7 @@ This custom image makes a few modification to the base Fedora image, moving in t
 As I only game on Steam, no other game launcher is included, however, I assume most can be added as flatpaks. I've tried Lutris and PlayonLinux and both worked fine, however, this image does nothing special to support or optimize for game launchers outside Steam.
 This is an AMD only image. No Nvidia support is included.
 
-Built weekly, the latest Fedora base image is modified in the following ways:
+Built weekly, Fedora 42 base image is modified in the following ways:
 - Removes Fedora kernel and swaps in latest [CachyOS kernel](https://copr.fedorainfracloud.org/coprs/bieszczaders/kernel-cachyos/) 
 - Adds scx-scheds added from [CachyOS kernel addons](https://copr.fedorainfracloud.org/coprs/bieszczaders/kernel-cachyos-addons/)
 - Swaps in latest Mesa drivers at build time from [mesa-git](https://copr.fedorainfracloud.org/coprs/xxmitsu/mesa-git/)
